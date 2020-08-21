@@ -1,0 +1,221 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="yonetim.master.cs" Inherits="yonetim_yonetim"  %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html;" />
+    <title>Ramazan Alperen Akıl Kişisel Web Sitesi Portfoilo Yönetim Paneli</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../stiller/yonetim.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="../Scripts/popper.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript"></script>
+   <script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript">
+        tinyMCE.init({
+            // General options
+            mode: "textareas",
+            theme: "advanced",
+            plugins: "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups",
+
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color:#E9ECEF">
+
+    <form id="form1" runat="server">
+        <div>
+
+            <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+                <h4 class="navbar-brand"><a href="Default.aspx">Yönetim Paneli</a></h4>
+                <h5 class="navbar-brand ml-auto text-white"><a href="../Default.aspx" target="_blank">Siteyi Görüntüle</a></h5>
+
+                <div class="ml-auto">
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar-list-4">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown dropleft">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <asp:Image ID="Image1" width="40" height="40" ImageUrl="../img/user/avatar.png" runat="server" CssClass="rounded-circle"/>
+                                    <asp:Repeater ID="RepeaterAvatar" runat="server">
+                                        <ItemTemplate>
+                                            <img id="avatar" src="<%# Eval("avatar") %>" width="40" height="40" class="rounded-circle">
+                                             
+                                        </ItemTemplate>
+                                        
+                                    </asp:Repeater>
+                                    <asp:Label ID="lblKullanici" runat="server" Text="" CssClass="ml-2 text-white"></asp:Label>
+
+
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="uyeislem.aspx">Profil</a>
+                                    
+                                    <a class="dropdown-item" href="cik.aspx">Çıkış Yap</a>
+
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+            <div id="yonetimTasiyici" class="container-fluid  row ">
+                <div id="solmenu" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 pl-0 accordion ">
+                    <div class="flex ">
+                        <div class="card-header">
+                            <a href="projeler.aspx" target="_blank" class="text-decoration-none text-dark" data-toggle="collapse" data-target="#m1">
+                                <img src="../img/icon/projeler.png" class="mr-2" width="40" />Projeler</a>
+                        </div>
+
+                        <div id="m1" class="collapse " data-parent="#solmenu">
+
+                            <ul class="list-group list-group-flush pl-3">
+                                <li class='list-group-item'><a href='Proje_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Proje Ekle</a></li>
+                                <li class='list-group-item'><a href='Proje_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Proje Düzenle - Sil</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="flex ">
+                        <div class="card-header">
+                            <a href="projeler.aspx" target="_blank" class="text-decoration-none text-dark" data-toggle="collapse" data-target="#m2">
+                                <img src="../img/icon/proje_kategori.png" class="mr-2" width="40" />Proje Kategori</a>
+                        </div>
+
+                        <div id="m2" class="collapse " data-parent="#solmenu">
+
+                            <ul class="list-group list-group-flush pl-3">
+                                <li class='list-group-item'><a href='P_Kat_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Proje Kategori Ekle</a></li>
+                                <li class='list-group-item'><a href='P_Kat_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Proje Kategori Düzenle - Sil</a></li>
+                                <li class='list-group-item'><a href='P_Alt_Kat_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Proje ALt Kategori Ekle</a></li>
+                                <li class='list-group-item'><a href='P_Alt_Kat_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Proje Alt Kategori Düzenle - Sil</a></li>
+
+                                <li class='list-group-item'><a href='P_Alt_Kat_2_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Proje Alt Kategorinin Alt Kategorisini Ekle</a></li>
+
+                                <li class='list-group-item'><a href='P_Alt_Kat_2_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Proje Alt Kategorinin Alt Kategorisini Düzenle - Sil</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="flex ">
+                        <div class="card-header">
+                            <a href="projeler.aspx" target="_blank" class="text-decoration-none text-dark" data-toggle="collapse" data-target="#m3">
+                                <img src="../img/icon/makaleler.png" class="mr-2" width="40" />Makaleler</a>
+                        </div>
+
+                        <div id="m3" class="collapse " data-parent="#solmenu">
+
+                            <ul class="list-group list-group-flush pl-3">
+                                <li class='list-group-item'><a href='Makale_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Makale Ekle</a></li>
+                                <li class='list-group-item'><a href='Makale_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Makale Düzenle - Sil</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="flex ">
+                        <div class="card-header">
+                            <a href="projeler.aspx" target="_blank" class="text-decoration-none text-dark" data-toggle="collapse" data-target="#m4">
+                                <img src="../img/icon/makale_kategori.png" class="mr-2" width="40" />Makale Kategori</a>
+                        </div>
+
+                        <div id="m4" class="collapse " data-parent="#solmenu">
+
+                            <ul class="list-group list-group-flush pl-3">
+                                <li class='list-group-item'><a href='Makale_Kat_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Makale Kategori Ekle</a></li>
+                                <li class='list-group-item'><a href='Makale_Kat_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Makale Kategori Düzenle - Sil</a></li>
+                                <li class='list-group-item'><a href='Makale_Alt_Kat_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Makale Alt Kategori Ekle</a></li>
+                                <li class='list-group-item'><a href='Makale_Alt_Kat_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Makale Alt Kategori Düzenle - Sil</a></li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="flex ">
+                        <div class="card-header">
+                            <a href="projeler.aspx" target="_blank" class="text-decoration-none text-dark" data-toggle="collapse" data-target="#m5">
+                                <img src="../img/icon/diger.png" class="mr-2" width="40" />Diğer</a>
+                        </div>
+
+                        <div id="m5" class="collapse " data-parent="#solmenu">
+
+                            <ul class="list-group list-group-flush pl-3">
+                                <li class='list-group-item'><a href='Bilgi_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Kişisel Bilgi Düzenle</a></li>
+                                <li class='list-group-item'><a href='Footer_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Footer Düzenle</a></li>
+                                  <li class='list-group-item'><a href='Hizmetler_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Hizmet Ekle</a></li>
+                                <li class='list-group-item'><a href='Hizmetler_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Hizmetler Düzenle</a></li>
+                                <li class='list-group-item'><a href='Sayfalar_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Sayfalar Düzenle</a></li>
+                                <li class='list-group-item'><a href='Yetenek_Ekle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Yetenek Ekle</a></li>
+                                <li class='list-group-item'><a href='Yetenek_Duzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Yetenek Düzenle</a></li>
+                                    <li class='list-group-item'><a href='uyeEkle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/ekle.png" class="mr-2" width="20" />Üye Ekle</a></li>
+                                   <li class='list-group-item'><a href='uyeDuzenle.aspx' class='text-decoration-none text-dark'>
+                                    <img src="../img/icon/duzenle.png" class="mr-2" width="20" />Üye Düzenle</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="yonetimsag" class="col-12 col-sm-6 col-md-12 col-lg-9 col-xl-9 pl-0 ">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+            <script runat="server">
+                protected string GetTime()
+                {
+                    return DateTime.Now.Year.ToString();
+
+                }
+            </script>
+            <footer class="jumbotron-fluid mt-3 pt-4 pb-5 bg-dark text-white-50 text-center ">
+                <p>&copy  <%= GetTime() %> Ramazan Alperen Akıl Yönetim Paneli Herk Hakkı Saklıdır.</p>
+
+            </footer>
+
+        </div>
+    </form>
+
+</body>
+</html>

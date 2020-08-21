@@ -1,0 +1,258 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ana.master.cs" Inherits="ana" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ramazan Alperen Akıl Kişsel Portfolio Web Sitesi</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="stiller/ana.css" rel="stylesheet" />
+    <link href="stiller/jquery.lightbox-0.5.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.0.0.slim.min.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="js/JavaScript.js"></script>
+    <script src="js/jquery.lightbox-0.5.min.js"></script>
+      <script type="text/javascript">
+    $(function() {
+        $('a.gallery').lightBox();
+    });
+    </script>
+       	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		background-color: #444;
+		padding: 10px;
+		width: 520px;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 5px solid #3e3e3e;
+		border-width: 5px 5px 20px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+	</style>
+
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-hover">
+
+            <a class="navbar-brand" style="font-family: Verdana, Geneva, Tahoma, sans-serif" href="Default.aspx">Ramazan Alperen AKIL</a>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHover" aria-controls="navbarDD" aria-expanded="false" aria-label="Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarHover">
+                <ul class="navbar-nav ">
+                    <li class="nav-item active px-3">
+                        <a class="nav-link" href="Default.aspx">Anasayfa</a>
+                    </li>
+                    <li class="nav-item dropdown px-3 ">
+
+                        <%-- <a class="nav-link dropdown-toggle " href="projeler.aspx" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projeler</a>--%>
+
+                        <a class="nav-link  dropdown-toggle " href="projeler.aspx">Projeler</a>
+
+                        <ul class="dropdown-menu dropright ">
+                            <asp:Repeater ID="RepeaterKat" runat="server" OnItemDataBound="RepeaterKat_ItemDataBound">
+                                <ItemTemplate>
+                            <li><a class="dropdown-item dropright dropdown-toggle" href="projeler.aspx?kId=<%#Eval("kategoriId")%>"><%#Eval("kategoriAd")%></a>
+                                <ul class="dropdown-menu dropright ">
+
+                                    <asp:Repeater ID="RepeaterAltKat" runat="server">
+                                        <ItemTemplate>
+                                            <li><a class="dropdown-item  dropright dropdown-toggle" href="projeler.aspx?akId=<%#Eval("altkategoriId")%>"><%#Eval("altKategoriAd")%></a>
+
+                                                <ul class="dropdown-menu dropright">
+
+                                                    <%#altKategoriGetir((int)Eval("altkategoriId"))%>
+                                                </ul>
+                                                
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                            </li>
+                </ul>
+                </li>
+
+                                </ItemTemplate>
+                            </asp:Repeater>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link" href="makale.aspx">Blog</a>
+                    </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="hakkimda.aspx">Hakkımda</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="iletisim.aspx">İletişim</a>
+                </li>
+
+
+                </ul>
+
+             
+
+
+            </div>
+
+        </nav>
+
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <script runat="server">
+        protected string GetTime()
+        {
+            return DateTime.Now.Year.ToString();
+
+        }
+    </script>
+
+    <!-- Footer -->
+    <asp:Repeater ID="RepeaterFooter" runat="server">
+        <ItemTemplate>
+
+
+            <section class="bg-dark text-white" id="footer">
+                <div class="container bg-dark ">
+                    <div class="row text-center text-xs-center text-sm-left text-md-left">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <h5>Hakkımda</h5>
+
+
+                            <p>
+                                <%#Eval("footerHakkimda")%>
+                            </p>
+
+
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 ">
+                            <h5>Sosyal Medyadan Takip Et</h5>
+                            <ul class="list-unstyled quick-links  ">
+                                <li>
+
+                                    <a class="ml-auto" href="<%#Eval("footerTwitter")%>" target="_blank">
+                                        <img src="img/icon/iconfinder_twitter_circle_294709.png" width="50" height="50" />
+                                        TWİTTER</a>
+
+                                </li>
+                                <li>
+
+                                    <a class="  ml-auto" href="<%#Eval("footerFacebook")%>" target="_blank">
+                                        <img src="img/icon/iconfinder_facebook_circle_color_107175.png" width="50" height="50" />
+                                        FACEBOOK</a>
+
+
+
+                                </li>
+                                <li>
+
+                                    <a class="  ml-auto" href="<%#Eval("footerInstagram")%>" target="_blank">
+                                        <img src="img/icon/iconfinder_instagram_834707.png" width="50" height="50" />
+                                        İNSTAGRAM</a>
+
+
+                                </li>
+                                <li>
+
+                                    <a class="  ml-auto" href="<%#Eval("footerLinkedin")%>" target="_blank">
+                                        <img src="img/icon/iconfinder_linkedin_834713.png" width="50" height="50" />
+                                        LİNKEDIN</a>
+
+
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <h5>iletişim</h5>
+
+
+                            <address><%#Eval("footerAdres")%></address>
+
+
+                            <p>
+                                Email: 
+                        
+                        
+                                <a href="mailto:<%#Eval("footerEmail1")%>"><%#Eval("footerEmail1")%></a>
+
+                            </p>
+                            <p>
+                                Email:
+                        
+                       
+                                <a href="mailto:<%#Eval("footerEmail2")%>"><%#Eval("footerEmail2")%></a>
+
+                            </p>
+                            <p>
+                                GSM  : 
+
+                        
+                                <%#Eval("footertel")%>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                            <p>
+                                <%-- <%#Eval("ozlu")%>
+                                 </br>--%>
+                                <%#Eval("footerYazi")%>
+                                <%--   </br>
+                                <%#Eval("footeruyari")%>--%>
+                            </p>
+
+                            <p class="h6">
+
+
+                                <div runat="server">
+                                    <div>
+                                        &copy  <%= GetTime() %> <%#Eval("copyright")%>
+                                    </div>
+                                </div>
+
+
+
+
+                            </p>
+                        </div>
+                        <hr />
+
+                    </div>
+                </div>
+            </section>
+        </ItemTemplate>
+    </asp:Repeater>
+
+    <!-- ./Footer -->
+
+
+
+</body>
+</html>
