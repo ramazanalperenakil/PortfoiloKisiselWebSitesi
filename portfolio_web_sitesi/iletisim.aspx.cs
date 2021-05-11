@@ -44,12 +44,12 @@ public partial class iletisim : System.Web.UI.Page
             MailMessage yeniMesaj = new MailMessage();
             yeniMesaj.IsBodyHtml = true;
             yeniMesaj.To.Add("ramazanalperenakilkmu@gmail.com");
-            yeniMesaj.From = new MailAddress("raailetisim@gmail.com", "Site İletişim", System.Text.Encoding.UTF8); 
+            yeniMesaj.From = new MailAddress("@gmail.com", "Site İletişim", System.Text.Encoding.UTF8); 
             yeniMesaj.Subject = konu+ " - " + adSoyad  ; 
             yeniMesaj.Body = mesajIcerik + "<br/>" + "<br/>" +"Gönderen İp: " +ipAdresi;
 
             SmtpClient gonder = new SmtpClient();
-            gonder.Credentials = new NetworkCredential("raailetisim@gmail.com", "793367c.");
+            gonder.Credentials = new NetworkCredential("@gmail.com", "");
             gonder.Port = 587; 
             gonder.Host = "smtp.gmail.com"; 
             gonder.EnableSsl = true;
